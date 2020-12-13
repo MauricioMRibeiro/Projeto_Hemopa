@@ -8,13 +8,16 @@ import 'package:hemopa_app/views/agendamento_doacao.dart';
 import 'package:hemopa_app/views/atualizar_cadastro.dart';
 import 'package:hemopa_app/views/cadastro.dart';
 import 'package:hemopa_app/views/users_list.dart';
+// ignore: unused_import
 import 'dart:io';
+// ignore: unused_import
 import 'dart:convert';
+// ignore: unused_import
 import 'package:postgres/postgres.dart';
 
 //import 'data/conexao.dart';
 
-void main()  {
+void main() {
   //conecta();
   runApp(Hemopa());
   // NOTE Do this as part of DB setup not in application code!
@@ -32,8 +35,9 @@ class Hemopa extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Hemopa Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.red,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         //home: TelaLogin(),

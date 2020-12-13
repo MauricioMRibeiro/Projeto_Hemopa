@@ -28,10 +28,12 @@ class Users with ChangeNotifier {
     }
 // Aletra cadastro
     if (user.cpf != null &&
+        // ignore: prefer_is_not_empty
         !user.cpf.trim().isEmpty &&
         _items.containsKey(user.cpf)) {
       _items.update(
         user.cpf,
+        // ignore: missing_required_param
         (_) => User(
           cpf: user.cpf,
           nome: user.nome,
@@ -53,11 +55,12 @@ class Users with ChangeNotifier {
           'senha': user.cpf,
         }),
       );
-      
-      final  id =  json.decode(response.body)['nome'] ;
+
+      final id = json.decode(response.body)['nome'];
       // adicionar
       _items.putIfAbsent(
         id,
+        // ignore: missing_required_param
         () => User(
           id: id,
           nome: user.nome,
