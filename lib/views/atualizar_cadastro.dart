@@ -35,15 +35,15 @@ class AtualizarCadastro extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 20,
+              color: Colors.white,
+              fontSize: 22,
             ),
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.red,
         ),
         body: Container(
           padding: EdgeInsets.only(
-            top: 20,
+            top: 40,
             left: 40,
             right: 40,
           ),
@@ -57,21 +57,21 @@ class AtualizarCadastro extends StatelessWidget {
                 child: Image.asset("imagem/logo.png"),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
                 height: 30,
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'Dados',
+                  'Dados Pessoais',
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -80,7 +80,7 @@ class AtualizarCadastro extends StatelessWidget {
                       borderSide: BorderSide(color: Colors.black)),
                   labelText: "Nome: " + users.all.elementAt(1).nome,
                   counterStyle: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -96,7 +96,7 @@ class AtualizarCadastro extends StatelessWidget {
                       borderSide: BorderSide(color: Colors.black)),
                   labelText: "Identidade: " + users.all.elementAt(1).id,
                   counterStyle: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -110,9 +110,9 @@ class AtualizarCadastro extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
-                  labelText: "Email: " + users.all.elementAt(1).email,
+                  labelText: "E-mail: " + users.all.elementAt(1).email,
                   counterStyle: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -129,7 +129,7 @@ class AtualizarCadastro extends StatelessWidget {
                       borderSide: BorderSide(color: Colors.black)),
                   labelText: "Telefone: " + users.all.elementAt(1).telefone,
                   counterStyle: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -144,22 +144,22 @@ class AtualizarCadastro extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
-                  //labelText: "Endereço: " + users.all.elementAt(1).endereco,
+                  labelText: "Endereço: " + users.all.elementAt(1).endereco,
                   counterStyle: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 20,
               ),
               Container(
-                height: 30,
+                height: 60,
                 alignment: Alignment.bottomCenter,
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.redAccent,
                   borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
@@ -174,7 +174,7 @@ class AtualizarCadastro extends StatelessWidget {
                           "Atualizar",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 20,
                           ),
                           textAlign: TextAlign.center,

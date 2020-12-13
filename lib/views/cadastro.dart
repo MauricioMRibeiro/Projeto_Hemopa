@@ -33,12 +33,20 @@ class _CadastroState extends State<Cadastro> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro Doador'),
+        title: Text(
+          'Cadastro Doador',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 22,
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.save,
               color: Colors.green.shade100,
+              size: 35.0,
             ),
             onPressed: () async {
               final isValid = _form.currentState.validate();
@@ -78,6 +86,7 @@ class _CadastroState extends State<Cadastro> {
                         keyboardType: TextInputType.text,
                         obscureText: false,
                         decoration: InputDecoration(labelText: 'Nome'),
+                        style: TextStyle(fontSize: 20),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Nome invalido';
@@ -93,7 +102,8 @@ class _CadastroState extends State<Cadastro> {
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         obscureText: false,
-                        decoration: InputDecoration(labelText: 'Email'),
+                        decoration: InputDecoration(labelText: 'E-mail'),
+                        style: TextStyle(fontSize: 20),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Nome invalido';
@@ -109,7 +119,8 @@ class _CadastroState extends State<Cadastro> {
                       TextFormField(
                         keyboardType: TextInputType.number,
                         obscureText: false,
-                        decoration: InputDecoration(labelText: 'Cpf'),
+                        decoration: InputDecoration(labelText: 'CPF'),
+                        style: TextStyle(fontSize: 20),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'cpf invalido';
@@ -125,12 +136,14 @@ class _CadastroState extends State<Cadastro> {
                         keyboardType: TextInputType.number,
                         obscureText: false,
                         decoration: InputDecoration(labelText: 'Telefone'),
+                        style: TextStyle(fontSize: 20),
                         onSaved: (value) => _formdata['telefone'] = value,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.text,
                         obscureText: false,
                         decoration: InputDecoration(labelText: 'Endereço'),
+                        style: TextStyle(fontSize: 20),
                         onSaved: (value) => _formdata['endereco'] = value,
                       ),
                     ],
