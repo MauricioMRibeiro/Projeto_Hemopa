@@ -15,6 +15,7 @@ class _CadastroState extends State<Cadastro> {
 
   final Map<String, String> _formdata = {};
 
+  // ignore: unused_element
   void _loadformdata(User user) {
     _formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
@@ -32,12 +33,20 @@ class _CadastroState extends State<Cadastro> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro Doador'),
+        title: Text(
+          'Cadastro Doador',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 22,
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.save,
               color: Colors.green.shade100,
+              size: 35.0,
             ),
             onPressed: () async {
               final isValid = _form.currentState.validate();
@@ -49,7 +58,8 @@ class _CadastroState extends State<Cadastro> {
                   _isLoading = true;
                 });
 
-               await Provider.of<Users>(context, listen: false).put(User(
+                // ignore: missing_required_param
+                await Provider.of<Users>(context, listen: false).put(User(
                   cpf: _formdata['cpf'],
                   nome: _formdata['nome'],
                   email: _formdata['email'],
@@ -60,81 +70,85 @@ class _CadastroState extends State<Cadastro> {
                 ));
                 Navigator.of(context).pop();
               }
-              ;
             },
           ),
         ],
       ),
-      body:_isLoading
+      body: _isLoading
           ? Center(child: CircularProgressIndicator())
-          :Padding(
-        padding: EdgeInsets.all(15),
-        child: Form(
-            key: _form,
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  keyboardType: TextInputType.text,
-                  obscureText: false,
-                  decoration: InputDecoration(labelText: 'Nome'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nome invalido';
-                    }
+          : Padding(
+              padding: EdgeInsets.all(15),
+              child: Form(
+                  key: _form,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        obscureText: false,
+                        decoration: InputDecoration(labelText: 'Nome'),
+                        style: TextStyle(fontSize: 20),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Nome invalido';
+                          }
 
-                    if (value.trim().length <= 3) {
-                      return 'Nome muito pequeno.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _formdata['nome'] = value,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  obscureText: false,
-                  decoration: InputDecoration(labelText: 'Email'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nome invalido';
-                    }
+                          if (value.trim().length <= 3) {
+                            return 'Nome muito pequeno.';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _formdata['nome'] = value,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: false,
+                        decoration: InputDecoration(labelText: 'E-mail'),
+                        style: TextStyle(fontSize: 20),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Nome invalido';
+                          }
 
-                    if (value.trim().length <= 3) {
-                      return 'Nome muito pequeno.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _formdata['email'] = value,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  obscureText: false,
-                  decoration: InputDecoration(labelText: 'Cpf'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'cpf invalido';
-                    }
-                    if (value.trim().length >= 12) {
-                      return 'cpf invalido!';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _formdata['cpf'] = value,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  obscureText: false,
-                  decoration: InputDecoration(labelText: 'Telefone'),
-                  onSaved: (value) => _formdata['telefone'] = value,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.text,
-                  obscureText: false,
-                  decoration: InputDecoration(labelText: 'Endereço'),
-                  onSaved: (value) => _formdata['endereco'] = value,
-                ),
-              ],
-            )),
-      ),
+                          if (value.trim().length <= 3) {
+                            return 'Nome muito pequeno.';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _formdata['email'] = value,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        obscureText: false,
+                        decoration: InputDecoration(labelText: 'CPF'),
+                        style: TextStyle(fontSize: 20),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'cpf invalido';
+                          }
+                          if (value.trim().length >= 12) {
+                            return 'cpf invalido!';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _formdata['cpf'] = value,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        obscureText: false,
+                        decoration: InputDecoration(labelText: 'Telefone'),
+                        style: TextStyle(fontSize: 20),
+                        onSaved: (value) => _formdata['telefone'] = value,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        obscureText: false,
+                        decoration: InputDecoration(labelText: 'Endereço'),
+                        style: TextStyle(fontSize: 20),
+                        onSaved: (value) => _formdata['endereco'] = value,
+                      ),
+                    ],
+                  )),
+            ),
     );
   }
 }
