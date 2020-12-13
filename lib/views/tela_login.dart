@@ -124,7 +124,7 @@ class _TelaLoginState extends State<TelaLogin> {
               ),
               onPressed: () async {
                 await http.get("${TelaLogin._baseUrl}${_emaildigitado}.json",
-                  /body: json.encode({
+                    body: json.encode({
                       'email': _email,
                       'senha': _senha,
                     }));
