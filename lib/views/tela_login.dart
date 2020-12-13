@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:convert';
 import 'package:hemopa_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -6,18 +7,45 @@ import 'package:hemopa_app/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 
 class TelaLogin extends StatefulWidget {
-  static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+
 
   @override
   _TelaLoginState createState() => _TelaLoginState();
 }
 
 class _TelaLoginState extends State<TelaLogin> {
-  var _senha = 'text2' ,
+
+  static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+  final Map<String, String> _formdata = {};
+  void _loadformdata(User user) {
+    _formdata['id'] = user.id;
+    _formdata['cpf'] = user.cpf;
+    _formdata['nome'] = user.nome;
+    _formdata['email'] = user.email;
+    _formdata['avatarUrl'] = user.avatarUrl;
+    _formdata['endereco'] = user.endereco;
+    _formdata['telefone'] = user.telefone;
+  }
+
+  void Salvar() {
+    setState(() {
+      _emaildigitado = textusuario.text;
+      _senhadigitada = senhadigitada.text;
+    });
+  }
+  fromJson(Map<String, dynamic> json) {
+      _email: json['email'];
+      _senha: json['id'];
+      title: json['title'];
+      body: json['body'];
+
+  }
+  var _senha = 'text2',
       _email = 'text',
       _emaildigitado = null,
       _senhadigitada = null;
-
+  TextEditingController textusuario = TextEditingController(),
+      senhadigitada = TextEditingController();
   User user;
 
   @override
@@ -45,6 +73,7 @@ class _TelaLoginState extends State<TelaLogin> {
           ),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
+            controller: textusuario,
             obscureText: false,
             decoration: InputDecoration(
                 labelText: 'Email ou CPF',
@@ -54,28 +83,9 @@ class _TelaLoginState extends State<TelaLogin> {
                   fontSize: 20,
                 )),
             style: TextStyle(fontSize: 20),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Nome invalido';
-              }
-              if (value.trim().length <= 3) {
-                return 'Nome muito pequeno.';
-              }
-              return null;
-            },
-            onSaved: (value) => _emaildigitado = value,
           ),
           TextFormField(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Nome invalido';
-              }
-              if (value.trim().length <= 3) {
-                return 'Nome muito pequeno.';
-              }
-              return null;
-            },
-            onSaved: (value) => _senhadigitada = value,
+            controller: senhadigitada,
             keyboardType: TextInputType.text,
             obscureText: true,
             decoration: InputDecoration(
@@ -91,15 +101,10 @@ class _TelaLoginState extends State<TelaLogin> {
             height: 48,
             alignment: Alignment.centerRight,
             child: FlatButton(
-              child: Text(
-                "Recuperar Senha",
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.USER_LIST,
-                );
-              },
-            ),
+                child: Text(
+                  "Recuperar Senha",
+                ),
+                onPressed: Salvar),
           ),
           SizedBox(
             height: 40,
@@ -123,12 +128,16 @@ class _TelaLoginState extends State<TelaLogin> {
                 textAlign: TextAlign.center,
               ),
               onPressed: () async {
-                await http.get("${TelaLogin._baseUrl}${_emaildigitado}.json",
-                    body: json.encode({
-                      'email': _email,
-                      'senha': _senha,
-                    }));
+                Salvar();
+                final response = await http.get("$_baseUrl/user/{$_emaildigitado}.json");
+                _email = json.decode(response.body);
+
+
+                print(response);
+                print(_senhadigitada);
+                print(_senha);
                 print(_emaildigitado);
+                print(_email);
                 if (_email == _emaildigitado && _senha == _senhadigitada) {
                   Navigator.of(context).pushNamed(
                     AppRoutes.DADOS_USARIO,
