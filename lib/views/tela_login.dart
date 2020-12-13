@@ -1,7 +1,25 @@
+import 'dart:convert';
+import 'package:hemopa_app/models/user.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
+import 'package:flutter/cupertino.dart';
 
-class TelaLogin extends StatelessWidget {
+class TelaLogin extends StatefulWidget {
+  static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+
+  @override
+  _TelaLoginState createState() => _TelaLoginState();
+}
+
+class _TelaLoginState extends State<TelaLogin> {
+  var _senha = 'text2' ,
+      _email = 'text',
+      _emaildigitado = null,
+      _senhadigitada = null;
+
+  User user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +54,28 @@ class TelaLogin extends StatelessWidget {
                   fontSize: 20,
                 )),
             style: TextStyle(fontSize: 20),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Nome invalido';
+              }
+              if (value.trim().length <= 3) {
+                return 'Nome muito pequeno.';
+              }
+              return null;
+            },
+            onSaved: (value) => _emaildigitado = value,
           ),
           TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Nome invalido';
+              }
+              if (value.trim().length <= 3) {
+                return 'Nome muito pequeno.';
+              }
+              return null;
+            },
+            onSaved: (value) => _senhadigitada = value,
             keyboardType: TextInputType.text,
             obscureText: true,
             decoration: InputDecoration(
@@ -84,10 +122,23 @@ class TelaLogin extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              onPressed: () => {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.DADOS_USARIO,
-                ),
+              onPressed: () async {
+                await http.get("${TelaLogin._baseUrl}${_emaildigitado}.json",
+                    body: json.encode({
+                      'email': _email,
+                      'senha': _senha,
+                    }));
+                print(_emaildigitado);
+                if (_email == _emaildigitado && _senha == _senhadigitada) {
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.DADOS_USARIO,
+                  );
+                } else {
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.HOME,
+                  );
+                }
+                ;
               },
             ),
           ),

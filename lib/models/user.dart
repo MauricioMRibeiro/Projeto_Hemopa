@@ -7,6 +7,7 @@ class User{
   final String avatarUrl;
   final String telefone;
   final String endereco;
+  final String senha;
 
   const User({
     this.cpf,
@@ -16,5 +17,6 @@ class User{
     @required this.avatarUrl,
     @required this.telefone,
     @required this.endereco,
+    @required this.senha,
   });
 }

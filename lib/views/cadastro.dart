@@ -3,12 +3,21 @@ import 'package:hemopa_app/models/user.dart';
 import 'package:hemopa_app/provider/users.dart';
 import 'package:provider/provider.dart';
 
-class Cadastro extends StatelessWidget {
+class Cadastro extends StatefulWidget {
+  @override
+  _CadastroState createState() => _CadastroState();
+}
+
+class _CadastroState extends State<Cadastro> {
   final _form = GlobalKey<FormState>();
+
+  bool _isLoading = false;
+
   final Map<String, String> _formdata = {};
 
   void _loadformdata(User user) {
     _formdata['id'] = user.id;
+    _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
     _formdata['email'] = user.email;
     _formdata['avatarUrl'] = user.avatarUrl;
@@ -30,12 +39,18 @@ class Cadastro extends StatelessWidget {
               Icons.save,
               color: Colors.green.shade100,
             ),
-            onPressed: () {
+            onPressed: () async {
               final isValid = _form.currentState.validate();
 
               if (isValid) {
                 _form.currentState.save();
-                Provider.of<Users>(context, listen: false).put(User(
+
+                setState(() {
+                  _isLoading = true;
+                });
+
+               await Provider.of<Users>(context, listen: false).put(User(
+                  cpf: _formdata['cpf'],
                   nome: _formdata['nome'],
                   email: _formdata['email'],
                   id: _formdata['id'],
@@ -50,7 +65,9 @@ class Cadastro extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
+      body:_isLoading
+          ? Center(child: CircularProgressIndicator())
+          :Padding(
         padding: EdgeInsets.all(15),
         child: Form(
             key: _form,
@@ -96,12 +113,12 @@ class Cadastro extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'cpf invalido';
                     }
-                    if (value.trim().length <= 12) {
+                    if (value.trim().length >= 12) {
                       return 'cpf invalido!';
                     }
                     return null;
                   },
-                  onSaved: (value) => _formdata['id'] = value,
+                  onSaved: (value) => _formdata['cpf'] = value,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/models/user.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
+
 class UserTitle extends StatelessWidget{
   final User user;
   const UserTitle(this.user);
