@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
+import 'package:date_format/date_format.dart';
 
 class AgendamentoDoacao extends StatefulWidget {
   @override
@@ -41,6 +42,8 @@ class _DropDownState extends State<AgendamentoDoacao> {
     '18:00'
   ];
   var _horarioSelecionado = '07:30';
+
+  DateTime _data = new DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +110,41 @@ class _DropDownState extends State<AgendamentoDoacao> {
               });
             },
             value: _unidadeSelecionada,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Data: ",
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          FlatButton(
+            child: Text(
+              '${formatDate(_data, [dd, '-', mm, '-', yyyy])}',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () async {
+              final dtPick = await showDatePicker(
+                  context: context,
+                  initialDate: new DateTime.now(),
+                  firstDate: new DateTime(1900),
+                  lastDate: new DateTime(2100));
+
+              if (dtPick != null && dtPick != _data) {
+                setState(() {
+                  _data = dtPick;
+                });
+              }
+            },
           ),
           SizedBox(
             height: 20,
