@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  date_format: "^1.0.9"
   provider:
 
   flutter_launcher_icons: "^0.8.0"
@@ -43,6 +45,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  
   pedantic: ^1.8.0
 
 # For information on the generic Dart part of this file, see the
