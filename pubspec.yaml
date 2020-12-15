@@ -27,16 +27,10 @@ dependencies:
   date_format: "^1.0.9"
   brasil_fields: ^0.6.0
   provider:
-
   flutter_launcher_icons: "^0.8.0"
-
   postgres: ^2.1.1
-
   path_provider: "^0.4.0"
-
   sqflite:
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0

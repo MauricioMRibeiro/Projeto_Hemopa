@@ -10,11 +10,13 @@ class UserForm extends StatelessWidget {
   // ignore: unused_element
   void _loadformdata(User user) {
     _formdata['id'] = user.id;
+    _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
     _formdata['email'] = user.email;
     _formdata['avatarUrl'] = user.avatarUrl;
     _formdata['endereco'] = user.endereco;
     _formdata['telefone'] = user.telefone;
+    _formdata['senha'] = user.senha;
   }
 
   @override

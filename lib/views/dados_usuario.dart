@@ -10,7 +10,7 @@ class DadosUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    final Users users = Provider.of(context);
+    final User user = Provider.of(context);
 
     // ignore: todo
     // TODO: implement build

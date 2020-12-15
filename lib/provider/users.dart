@@ -6,7 +6,8 @@ import 'package:hemopa_app/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class Users with ChangeNotifier {
-  static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+  //static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+  static const _baseUrl = 'https://hemopa-app1-default-rtdb.firebaseio.com/';
   final Map<String, User> _items = {...DUMMY_USERS};
 
   List<User> get all {
@@ -41,6 +42,7 @@ class Users with ChangeNotifier {
           email: user.email,
           endereco: user.endereco,
           telefone: user.telefone,
+          senha: user.senha,
         ),
       );
     } else {
@@ -50,9 +52,10 @@ class Users with ChangeNotifier {
           'cpf': user.cpf,
           'nome': user.nome,
           'email': user.email,
+          'id': user.id,
           'telefone': user.telefone,
           'endereco': user.endereco,
-          'senha': user.cpf,
+          'senha': user.senha,
         }),
       );
 
@@ -63,10 +66,12 @@ class Users with ChangeNotifier {
         // ignore: missing_required_param
         () => User(
           id: id,
+          cpf: user.cpf,
           nome: user.nome,
           email: user.email,
           endereco: user.endereco,
           telefone: user.telefone,
+          senha: user.senha,
         ),
       );
     }

@@ -1,7 +1,5 @@
 import 'dart:convert';
-// ignore: duplicate_import
 import 'dart:convert';
-import 'dart:ui';
 import 'package:hemopa_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -14,10 +12,18 @@ class TelaLogin extends StatefulWidget {
 }
 
 class _TelaLoginState extends State<TelaLogin> {
-  static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+  var _emaildigitado = null, _senhadigitada = null;
+
+  TextEditingController textusuario = TextEditingController(),
+      senhadigitada = TextEditingController();
+
+  User user;
+
+  //static const _baseUrl = 'https://hemopa-app-default-rtdb.firebaseio.com/';
+  static const _baseUrl = 'https://hemopa-app1-default-rtdb.firebaseio.com/';
   final Map<String, String> _formdata = {};
-  // ignore: unused_element
-  void _loadformdata(User user) {
+
+  User converteUser(var teste , int i ) {
     _formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
@@ -25,9 +31,11 @@ class _TelaLoginState extends State<TelaLogin> {
     _formdata['avatarUrl'] = user.avatarUrl;
     _formdata['endereco'] = user.endereco;
     _formdata['telefone'] = user.telefone;
+    _formdata['senha'] = user.senha;
+   // var senha  =  teste.values.elementAt(i)['senha'];
+
   }
 
-  // ignore: non_constant_identifier_names
   void Salvar() {
     setState(() {
       _emaildigitado = textusuario.text;
@@ -35,44 +43,12 @@ class _TelaLoginState extends State<TelaLogin> {
     });
   }
 
-  fromJson(Map<String, dynamic> json) {
-    // ignore: unused_label
-    // ignore: unnecessary_statements
-    // ignore: unused_label
-    // ignore: unnecessary_statements
-    // ignore: unused_label
-    // ignore: unnecessary_statements
-    // ignore: unused_label
-    // ignore: unnecessary_statements
-    _email:
-    json['email'];
-    // ignore: unused_label
-    _senha:
-    json['id'];
-    // ignore: unused_label
-    title:
-    json['title'];
-    // ignore: unused_label
-    body:
-    json['body'];
-  }
-
-  var _senha = 'text2',
-      _email = 'text',
-      // ignore: avoid_init_to_null
-      _emaildigitado = null,
-      // ignore: avoid_init_to_null
-      _senhadigitada = null;
-  TextEditingController textusuario = TextEditingController(),
-      senhadigitada = TextEditingController();
-  User user;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
       padding: EdgeInsets.only(
-        top: 120,
+        top: 60,
         left: 40,
         right: 40,
       ),
@@ -80,12 +56,12 @@ class _TelaLoginState extends State<TelaLogin> {
       child: ListView(
         children: <Widget>[
           SizedBox(
-            width: 158,
-            height: 158,
+            width: 128,
+            height: 128,
             child: Image.asset('imagem/logo.png'),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           SizedBox(
             height: 10,
@@ -95,7 +71,7 @@ class _TelaLoginState extends State<TelaLogin> {
             controller: textusuario,
             obscureText: false,
             decoration: InputDecoration(
-                labelText: 'E-mail ou CPF',
+                labelText: 'Email ou CPF',
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -130,83 +106,85 @@ class _TelaLoginState extends State<TelaLogin> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Colors.green,
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
               ),
             ),
-            height: 60,
+            height: 40,
             child: FlatButton(
               child: Text(
-                "Entrar",
+                "Login",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 20,
                 ),
                 textAlign: TextAlign.center,
               ),
               onPressed: () async {
                 Salvar();
-                final response =
-                    await http.get("$_baseUrl/user/{$_emaildigitado}.json");
-                _email = json.decode(response.body);
+                final response = await http.get("$_baseUrl/user.json");
+                //var teste =  User.fromJson(json.decode(response.body)['user']);
+                Map teste = json.decode(response.body);
 
-                print(response);
-                print(_senhadigitada);
-                print(_senha);
-                print(_emaildigitado);
-                print(_email);
-                if (_email == _emaildigitado && _senha == _senhadigitada) {
-                  Navigator.of(context).pushNamed(
-                    AppRoutes.DADOS_USARIO,
-                  );
-                } else {
-                  Navigator.of(context).pushNamed(
-                    AppRoutes.HOME,
-                  );
-                }
+                // Percorre lista de usuarios cadastrados
+                for (int i = 0; i < teste.length; i++) {
+                  //print(teste.values.elementAt(i)['cpf'] + " email digitado : " + _emaildigitado);
+                  if ((teste.values.elementAt(i)['cpf'] == _emaildigitado) &&
+                      (teste.values.elementAt(i)['senha'] == _senhadigitada)) {
+                    print("Ususario: " + teste.values.elementAt(i)['cpf']);
+                    print("Senha:" + teste.values.elementAt(i)['senha']);
+                    print("Login efetuado com sucesso !");
+                    //converteUser(i, teste.values.elementAt(i));
+                    print("Doador:" + teste.values.elementAt(i).toString());
+                    user = User.fromJson(teste.values.elementAt(i));
+
+                    i = teste.length;
+
+                    print("Senha:" + user.cpf);
+                    print("Nome:" + user.nome);
+                    print("cpf:" + user.cpf);
+                    print("avatarUrl:" + user.avatarUrl);
+                    print("id:" + user.id);
+                    print("endereco:" + user.endereco);
+                    print("telefone:" + user.telefone);
+                    print("email:" + user.email);
+                    print("senha:" + user.senha);
+
+                    Navigator.of(context).pushNamed(
+                        AppRoutes.DADOS_USARIO,
+                    );
+                  }
+                };
+                Navigator.of(context).pushNamed(
+                  AppRoutes.HOME,
+                );
+
               },
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 40,
           ),
           Container(
-            child: Text(
-              "Não tem uma conta?",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 18,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            // decoration: BoxDecoration(
-            //   color: Colors.red,
-            //   borderRadius: BorderRadius.all(
-            //     Radius.circular(8),
-            //   ),
-            //),
-            height: 60,
+            height: 40,
             child: FlatButton(
               child: Text(
                 "Cadastre-se",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.red,
+                  color: Colors.black,
                   fontSize: 20,
                 ),
                 textAlign: TextAlign.center,
               ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(color: Colors.redAccent)),
               onPressed: () => {
                 Navigator.of(context).pushNamed(
                   AppRoutes.CADASTRO,
