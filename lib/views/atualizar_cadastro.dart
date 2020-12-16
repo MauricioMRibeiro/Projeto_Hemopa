@@ -10,12 +10,23 @@ final Map<String, String> _formdata = {};
 
 // ignore: unused_element
 void _loadformdata(User user) {
-  _formdata['id'] = user.id;
+  _formdata['cpf'] = user.cpf;
   _formdata['nome'] = user.nome;
   _formdata['email'] = user.email;
   _formdata['avatarUrl'] = user.avatarUrl;
   _formdata['endereco'] = user.endereco;
   _formdata['telefone'] = user.telefone;
+  _formdata['senha'] = user.senha;
+  //inseri novos dados:
+  _formdata['datanasc'] = user.datanasc;
+  _formdata['rg'] = user.rg;
+  _formdata['cep'] = user.cep;
+  _formdata['cidade'] = user.cidade;
+  _formdata['uf'] = user.uf;
+  _formdata['numero'] = user.numero;
+  _formdata['bairro'] = user.bairro;
+  _formdata['sexo'] = user.sexo;
+  _formdata['celular'] = user.celular;
 }
 
 class AtualizarCadastro extends StatelessWidget {
@@ -94,7 +105,7 @@ class AtualizarCadastro extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
-                  labelText: "Identidade: " + users.all.elementAt(1).id,
+                  labelText: "Cpf: " + users.all.elementAt(1).cpf,
                   counterStyle: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

@@ -9,14 +9,23 @@ class UserForm extends StatelessWidget {
 
   // ignore: unused_element
   void _loadformdata(User user) {
-    _formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
     _formdata['email'] = user.email;
-    _formdata['avatarUrl'] = user.avatarUrl;
+    //_formdata['avatarUrl'] = user.avatarUrl;
     _formdata['endereco'] = user.endereco;
     _formdata['telefone'] = user.telefone;
     _formdata['senha'] = user.senha;
+    //inseri novos dados:
+    _formdata['datanasc'] = user.datanasc;
+    _formdata['rg'] = user.rg;
+    _formdata['cep'] = user.cep;
+    _formdata['cidade'] = user.cidade;
+    _formdata['uf'] = user.uf;
+    _formdata['numero'] = user.numero;
+    _formdata['bairro'] = user.bairro;
+    _formdata['sexo'] = user.sexo;
+    _formdata['celular'] = user.celular;
   }
 
   @override
@@ -37,12 +46,23 @@ class UserForm extends StatelessWidget {
                 _form.currentState.save();
                 // ignore: missing_required_param
                 Provider.of<Users>(context, listen: false).put(User(
+                  cpf: _formdata['cpf'],
+                  //id: _formdata['id'],
                   nome: _formdata['nome'],
                   email: _formdata['email'],
-                  id: _formdata['id'],
-                  avatarUrl: _formdata['avatarUrl'],
-                  endereco: _formdata['endereco'],
+                  datanasc: _formdata['datanasc'],
+                  rg: _formdata['rg'],
                   telefone: _formdata['telefone'],
+                  //avatarUrl: _formdata['avatarUrl'],
+                  sexo: _formdata['sexo'],
+                  celular: _formdata['celular'],
+                  endereco: _formdata['endereco'],
+                  numero: _formdata['numero'],
+                  bairro: _formdata['bairro'],
+                  cep: _formdata['cep'],
+                  cidade: _formdata['cidade'],
+                  uf: _formdata['uf'],
+                  senha: _formdata['senha'],
                 ));
                 Navigator.of(context).pop();
               }

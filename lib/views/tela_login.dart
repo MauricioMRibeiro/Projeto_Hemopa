@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:convert';
 import 'package:hemopa_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class _TelaLoginState extends State<TelaLogin> {
   final Map<String, String> _formdata = {};
 
   User converteUser(var teste , int i ) {
-    _formdata['id'] = user.id;
+    //_formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
     _formdata['email'] = user.email;
@@ -32,6 +31,16 @@ class _TelaLoginState extends State<TelaLogin> {
     _formdata['endereco'] = user.endereco;
     _formdata['telefone'] = user.telefone;
     _formdata['senha'] = user.senha;
+    //inseri novos dados:
+    _formdata['datanasc'] = user.datanasc;
+    _formdata['rg'] = user.rg;
+    _formdata['cep'] = user.cep;
+    _formdata['cidade'] = user.cidade;
+    _formdata['uf'] = user.uf;
+    _formdata['numero'] = user.numero;
+    _formdata['bairro'] = user.bairro;
+    _formdata['sexo'] = user.sexo;
+    _formdata['celular'] = user.celular;
    // var senha  =  teste.values.elementAt(i)['senha'];
 
   }
@@ -127,13 +136,15 @@ class _TelaLoginState extends State<TelaLogin> {
                 final response = await http.get("$_baseUrl/user.json");
                 //var teste =  User.fromJson(json.decode(response.body)['user']);
                 Map teste = json.decode(response.body);
-
+               // print("Senha:" + _senhadigitada);
+               // print("Email:" + _emaildigitado);
+               // print(teste.values.elementAt(0)['email'] + " email logado : " + teste.values.elementAt(0)['email']);
                 // Percorre lista de usuarios cadastrados
                 for (int i = 0; i < teste.length; i++) {
-                  //print(teste.values.elementAt(i)['cpf'] + " email digitado : " + _emaildigitado);
-                  if ((teste.values.elementAt(i)['cpf'] == _emaildigitado) &&
+                  print(teste.values.elementAt(i)['email'] + " email digitado : " + _emaildigitado);
+                  if ((teste.values.elementAt(i)['email'] == _emaildigitado) &&
                       (teste.values.elementAt(i)['senha'] == _senhadigitada)) {
-                    print("Ususario: " + teste.values.elementAt(i)['cpf']);
+                    print("Ususario: " + teste.values.elementAt(i)['email']);
                     print("Senha:" + teste.values.elementAt(i)['senha']);
                     print("Login efetuado com sucesso !");
                     //converteUser(i, teste.values.elementAt(i));
@@ -141,16 +152,25 @@ class _TelaLoginState extends State<TelaLogin> {
                     user = User.fromJson(teste.values.elementAt(i));
 
                     i = teste.length;
-
-                    print("Senha:" + user.cpf);
-                    print("Nome:" + user.nome);
+// Prints para testes
+                    //print("id:" + user.id);
                     print("cpf:" + user.cpf);
+                    print("nome:" + user.nome);
+                    print("email:" + user.email);
                     print("avatarUrl:" + user.avatarUrl);
-                    print("id:" + user.id);
                     print("endereco:" + user.endereco);
                     print("telefone:" + user.telefone);
-                    print("email:" + user.email);
                     print("senha:" + user.senha);
+                    //inseri novos dados:
+                    print("datanasc:" + user.datanasc);
+                    print("rg:" + user.rg);
+                    print("cep:" + user.cep);
+                    print("cidade:" + user.cidade);
+                    print("uf:" + user.uf);
+                    print("numero:" + user.numero);
+                    print("bairro:" + user.bairro);
+                    print("sexo:" + user.sexo);
+                    print("celular:" + user.celular);
 
                     Navigator.of(context).pushNamed(
                         AppRoutes.DADOS_USARIO,

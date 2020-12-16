@@ -83,7 +83,7 @@ class DadosUsuario extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Identidade: " + user.id,
+            "Identidade: " + user.rg,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

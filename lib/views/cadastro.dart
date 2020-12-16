@@ -1,5 +1,4 @@
-import 'dart:html';
-
+//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hemopa_app/models/user.dart';
@@ -21,13 +20,14 @@ class _CadastroState extends State<Cadastro> {
 
   // ignore: unused_element
   void _loadformdata(User user) {
-    _formdata['id'] = user.id;
+   // _formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
     _formdata['email'] = user.email;
     _formdata['avatarUrl'] = user.avatarUrl;
     _formdata['endereco'] = user.endereco;
     _formdata['telefone'] = user.telefone;
+    _formdata['senha'] = user.senha;
     //inseri novos dados:
     _formdata['datanasc'] = user.datanasc;
     _formdata['rg'] = user.rg;
@@ -75,21 +75,22 @@ class _CadastroState extends State<Cadastro> {
                   // ignore: missing_required_param
                   await Provider.of<Users>(context, listen: false).put(User(
                     cpf: _formdata['cpf'],
+                    //id: _formdata['id'],
                     nome: _formdata['nome'],
                     email: _formdata['email'],
-                    id: _formdata['id'],
-                    avatarUrl: _formdata['avatarUrl'],
-                    endereco: _formdata['endereco'],
-                    telefone: _formdata['telefone'],
                     datanasc: _formdata['datanasc'],
                     rg: _formdata['rg'],
+                    telefone: _formdata['telefone'],
+                    avatarUrl: _formdata['avatarUrl'],
+                    sexo: _formdata['sexo'],
+                    celular: _formdata['celular'],
+                    endereco: _formdata['endereco'],
+                    numero: _formdata['numero'],
+                    bairro: _formdata['bairro'],
                     cep: _formdata['cep'],
                     cidade: _formdata['cidade'],
                     uf: _formdata['uf'],
-                    numero: _formdata['numero'],
-                    bairro: _formdata['bairro'],
-                    sexo: _formdata['sexo'],
-                    celular: _formdata['celular'],
+                    senha: _formdata['senha'],
                   ));
                   Navigator.of(context).pop();
                 }
@@ -122,6 +123,22 @@ class _CadastroState extends State<Cadastro> {
                               return null;
                             },
                             onSaved: (value) => _formdata['nome'] = value,
+                          ),TextFormField(
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            decoration: InputDecoration(labelText: 'Senha'),
+                            style: TextStyle(fontSize: 20),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Senha invalido';
+                              }
+
+                              if (value.trim().length <= 3) {
+                                return 'Senha muito pequeno.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) => _formdata['senha'] = value,
                           ),
                           //inseri novos dados:
                           TextFormField(

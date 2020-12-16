@@ -8,7 +8,7 @@ const DUMMY_USERS = {
     email: '@mar.mil.br',
     avatarUrl:
         'https://cdn.pixabay.com/photo/2020/11/13/20/20/giraffe-5739828__340.jpg',
-    id: '123',
+    //id: '123',
     telefone: '2563232-22',
     endereco: 'Rua dos nós',
   ),
@@ -19,7 +19,7 @@ const DUMMY_USERS = {
     email: '@mar.mil.br',
     avatarUrl:
         'https://cdn.pixabay.com/photo/2019/01/26/10/24/eagle-3955951__340.jpg',
-    id: '3333',
+    //id: '3333',
     telefone: '2563232-22',
     endereco: 'Rua dos nós',
   ),
@@ -30,7 +30,7 @@ const DUMMY_USERS = {
     email: '@mar.mil.br',
     avatarUrl:
         'https://cdn.pixabay.com/photo/2020/11/03/05/34/workers-5708691_960_720.jpg',
-    id: '123',
+    //id: '123',
     telefone: '2563232-22',
     endereco: 'Rua dos nós',
   ),
@@ -41,7 +41,7 @@ const DUMMY_USERS = {
     email: 'mau@mar.mil.br',
     avatarUrl:
         'https://cdn.pixabay.com/photo/2020/09/19/11/32/red-rose-5584238__340.jpg',
-    id: '123',
+    //id: '123',
     telefone: '2563232-22',
     endereco: 'Rua dos nós',
   )

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/data/dummy_Users.dart';
 import 'package:hemopa_app/models/user.dart';
@@ -36,13 +35,22 @@ class Users with ChangeNotifier {
         user.cpf,
         // ignore: missing_required_param
         (_) => User(
+          //id: user.id,
           cpf: user.cpf,
           nome: user.nome,
-          id: user.id,
           email: user.email,
-          endereco: user.endereco,
           telefone: user.telefone,
+          endereco: user.endereco,
           senha: user.senha,
+          datanasc: user.datanasc,
+          rg: user.rg,
+          cep: user.cep,
+          cidade: user.cidade,
+          uf: user.uf,
+          numero: user.numero,
+          bairro: user.bairro,
+          sexo: user.sexo,
+          celular: user.celular,
         ),
       );
     } else {
@@ -52,10 +60,19 @@ class Users with ChangeNotifier {
           'cpf': user.cpf,
           'nome': user.nome,
           'email': user.email,
-          'id': user.id,
+          //'id': user.id,
           'telefone': user.telefone,
           'endereco': user.endereco,
           'senha': user.senha,
+          'datanasc': user.datanasc,
+          'rg': user.rg,
+          'cep': user.cep,
+          'cidade': user.cidade,
+          'uf': user.uf,
+          'numero': user.numero,
+          'bairro': user.bairro,
+          'sexo': user.sexo,
+          'celular': user.celular,
         }),
       );
 
@@ -65,13 +82,23 @@ class Users with ChangeNotifier {
         id,
         // ignore: missing_required_param
         () => User(
-          id: id,
+          //id: id,
           cpf: user.cpf,
           nome: user.nome,
           email: user.email,
-          endereco: user.endereco,
           telefone: user.telefone,
+          endereco: user.endereco,
           senha: user.senha,
+          datanasc: user.datanasc,
+          rg: user.rg,
+          cep: user.cep,
+          cidade: user.cidade,
+          uf: user.uf,
+          numero: user.numero,
+          bairro: user.bairro,
+          sexo: user.sexo,
+          celular: user.celular,
+
         ),
       );
     }
