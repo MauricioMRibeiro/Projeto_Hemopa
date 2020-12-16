@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:hemopa_app/models/user.dart';
+import 'package:hemopa_app/views/dados_usuario.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class TelaLogin extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _TelaLoginState extends State<TelaLogin> {
   static const _baseUrl = 'https://hemopa-app1-default-rtdb.firebaseio.com/';
   final Map<String, String> _formdata = {};
 
-  User converteUser(var teste , int i ) {
+  User converteUser(var teste, int i) {
     //_formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
     _formdata['nome'] = user.nome;
@@ -41,8 +43,7 @@ class _TelaLoginState extends State<TelaLogin> {
     _formdata['bairro'] = user.bairro;
     _formdata['sexo'] = user.sexo;
     _formdata['celular'] = user.celular;
-   // var senha  =  teste.values.elementAt(i)['senha'];
-
+    // var senha  =  teste.values.elementAt(i)['senha'];
   }
 
   void Salvar() {
@@ -136,19 +137,22 @@ class _TelaLoginState extends State<TelaLogin> {
                 final response = await http.get("$_baseUrl/user.json");
                 //var teste =  User.fromJson(json.decode(response.body)['user']);
                 Map teste = json.decode(response.body);
-               // print("Senha:" + _senhadigitada);
-               // print("Email:" + _emaildigitado);
-               // print(teste.values.elementAt(0)['email'] + " email logado : " + teste.values.elementAt(0)['email']);
+                // print("Senha:" + _senhadigitada);
+                // print("Email:" + _emaildigitado);
+                // print(teste.values.elementAt(0)['email'] + " email logado : " + teste.values.elementAt(0)['email']);
                 // Percorre lista de usuarios cadastrados
                 for (int i = 0; i < teste.length; i++) {
-                  print(teste.values.elementAt(i)['email'] + " email digitado : " + _emaildigitado);
+                  print(teste.values.elementAt(i)['email'] +
+                      " email digitado : " +
+                      _emaildigitado);
                   if ((teste.values.elementAt(i)['email'] == _emaildigitado) &&
                       (teste.values.elementAt(i)['senha'] == _senhadigitada)) {
                     print("Ususario: " + teste.values.elementAt(i)['email']);
                     print("Senha:" + teste.values.elementAt(i)['senha']);
                     print("Login efetuado com sucesso !");
                     //converteUser(i, teste.values.elementAt(i));
-                    print("Doador:" + teste.values.elementAt(i).toString());
+                    //var nomeT = teste.values.firstWhere((v) => teste[v] == nome , orElse: () => null);
+                    print("Doador: " + teste.values.elementAt(i)['nome']);
                     user = User.fromJson(teste.values.elementAt(i));
 
                     i = teste.length;
@@ -157,7 +161,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     print("cpf:" + user.cpf);
                     print("nome:" + user.nome);
                     print("email:" + user.email);
-                    print("avatarUrl:" + user.avatarUrl);
+                    //print("avatarUrl:" + user.avatarUrl);
                     print("endereco:" + user.endereco);
                     print("telefone:" + user.telefone);
                     print("senha:" + user.senha);
@@ -169,18 +173,18 @@ class _TelaLoginState extends State<TelaLogin> {
                     print("uf:" + user.uf);
                     print("numero:" + user.numero);
                     print("bairro:" + user.bairro);
-                    print("sexo:" + user.sexo);
+                    //print("sexo:" + user.sexo);
                     print("celular:" + user.celular);
 
-                    Navigator.of(context).pushNamed(
-                        AppRoutes.DADOS_USARIO,
-                    );
-                  }
-                };
-                Navigator.of(context).pushNamed(
-                  AppRoutes.HOME,
-                );
 
+                    Navigator.of(context)
+                        .pushReplacementNamed(AppRoutes.DADOS_USARIO, arguments: user);
+                  }
+                }
+                ;
+                Navigator.of(context).pushNamed(
+                  AppRoutes.USER_LIST,
+                );
               },
             ),
           ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/models/user.dart';
-import 'package:hemopa_app/provider/users.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
-User user;
+class DadosUsuario extends StatefulWidget {
 
-class DadosUsuario extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  _DadosUsuarioState createState() => _DadosUsuarioState();
+}
+
+class _DadosUsuarioState extends State<DadosUsuario> {
+  @override
+  Widget build(BuildContextcontext) {
     // ignore: unused_local_variable
     final User user = Provider.of(context);
 
