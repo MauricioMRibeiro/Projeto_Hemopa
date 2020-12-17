@@ -14,7 +14,7 @@ class TelaLogin extends StatefulWidget {
 
 class _TelaLoginState extends State<TelaLogin> {
   var _emaildigitado = null, _senhadigitada = null;
-
+  bool _isLoading = false;
   TextEditingController textusuario = TextEditingController(),
       senhadigitada = TextEditingController();
 
@@ -57,6 +57,7 @@ class _TelaLoginState extends State<TelaLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+
       padding: EdgeInsets.only(
         top: 60,
         left: 40,
@@ -133,7 +134,13 @@ class _TelaLoginState extends State<TelaLogin> {
                 textAlign: TextAlign.center,
               ),
               onPressed: () async {
+                int i = 0;
+                setState(() {
+                  _isLoading = true;
+                });
                 Salvar();
+
+
                 final response = await http.get("$_baseUrl/user.json");
                 //var teste =  User.fromJson(json.decode(response.body)['user']);
                 Map teste = json.decode(response.body);
@@ -141,7 +148,9 @@ class _TelaLoginState extends State<TelaLogin> {
                 // print("Email:" + _emaildigitado);
                 // print(teste.values.elementAt(0)['email'] + " email logado : " + teste.values.elementAt(0)['email']);
                 // Percorre lista de usuarios cadastrados
-                for (int i = 0; i < teste.length; i++) {
+
+
+                for (i; i < teste.length; i++) {
                   print(teste.values.elementAt(i)['email'] +
                       " email digitado : " +
                       _emaildigitado);
@@ -176,15 +185,17 @@ class _TelaLoginState extends State<TelaLogin> {
                     //print("sexo:" + user.sexo);
                     print("celular:" + user.celular);
 
-
-                    Navigator.of(context)
-                        .pushReplacementNamed(AppRoutes.DADOS_USARIO, arguments: user);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DadosUsuario(user: user)));
                   }
                 }
                 ;
-                Navigator.of(context).pushNamed(
-                  AppRoutes.USER_LIST,
-                );
+                if (i == teste.length)
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.HOME,
+                  );
               },
             ),
           ),

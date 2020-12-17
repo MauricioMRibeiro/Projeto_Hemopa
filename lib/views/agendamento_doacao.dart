@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
 import 'package:date_format/date_format.dart';
 
+import 'dados_usuario.dart';
+
 class AgendamentoDoacao extends StatefulWidget {
   @override
   _DropDownState createState() => _DropDownState();
@@ -45,6 +47,8 @@ class _DropDownState extends State<AgendamentoDoacao> {
 
   DateTime _data = new DateTime.now();
 
+  get user => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,16 +71,17 @@ class _DropDownState extends State<AgendamentoDoacao> {
 
   criaDropDownButton() {
     return Container(
+      padding: EdgeInsets.all(25),
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
           SizedBox(
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
             child: Image.asset('imagem/logo.png'),
           ),
           SizedBox(
-            height: 30,
+            height: 5,
           ),
           Text(
             "Unidade de Coleta:",
@@ -88,7 +93,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           DropdownButton<String>(
             //dropdownColor: Color.fromARGB(255, 255, 50, 0),
@@ -112,7 +117,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             value: _unidadeSelecionada,
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             "Data: ",
@@ -147,7 +152,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             },
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             "Horário:",
@@ -179,7 +184,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             value: _horarioSelecionado,
           ),
           SizedBox(
-            height: 50,
+            height: 10,
           ),
           Container(
             decoration: BoxDecoration(
@@ -188,8 +193,8 @@ class _DropDownState extends State<AgendamentoDoacao> {
                 Radius.circular(8),
               ),
             ),
-            height: 60,
-            width: 300,
+            height: 40,
+            width: 200,
             child: FlatButton(
               child: Text(
                 "Agendar",
@@ -201,9 +206,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
                 textAlign: TextAlign.center,
               ),
               onPressed: () => {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.DADOS_USARIO,
-                ),
+              Navigator.pop(context)
               },
             ),
           ),
