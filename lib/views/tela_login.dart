@@ -13,7 +13,9 @@ class TelaLogin extends StatefulWidget {
 }
 
 class _TelaLoginState extends State<TelaLogin> {
+  // ignore: avoid_init_to_null
   var _emaildigitado = null, _senhadigitada = null;
+  // ignore: unused_field
   bool _isLoading = false;
   TextEditingController textusuario = TextEditingController(),
       senhadigitada = TextEditingController();
@@ -24,6 +26,7 @@ class _TelaLoginState extends State<TelaLogin> {
   static const _baseUrl = 'https://hemopa-app1-default-rtdb.firebaseio.com/';
   final Map<String, String> _formdata = {};
 
+  // ignore: missing_return
   User converteUser(var teste, int i) {
     //_formdata['id'] = user.id;
     _formdata['cpf'] = user.cpf;
@@ -46,6 +49,7 @@ class _TelaLoginState extends State<TelaLogin> {
     // var senha  =  teste.values.elementAt(i)['senha'];
   }
 
+  // ignore: non_constant_identifier_names
   void Salvar() {
     setState(() {
       _emaildigitado = textusuario.text;
@@ -57,7 +61,6 @@ class _TelaLoginState extends State<TelaLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-
       padding: EdgeInsets.only(
         top: 60,
         left: 40,
@@ -67,8 +70,8 @@ class _TelaLoginState extends State<TelaLogin> {
       child: ListView(
         children: <Widget>[
           SizedBox(
-            width: 128,
-            height: 128,
+            width: 158,
+            height: 188,
             child: Image.asset('imagem/logo.png'),
           ),
           SizedBox(
@@ -82,7 +85,7 @@ class _TelaLoginState extends State<TelaLogin> {
             controller: textusuario,
             obscureText: false,
             decoration: InputDecoration(
-                labelText: 'Email ou CPF',
+                labelText: 'E-mail ou CPF',
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -117,18 +120,18 @@ class _TelaLoginState extends State<TelaLogin> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: Colors.redAccent,
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
               ),
             ),
-            height: 40,
+            height: 60,
             child: FlatButton(
               child: Text(
-                "Login",
+                "Entrar",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 20,
                 ),
                 textAlign: TextAlign.center,
@@ -140,7 +143,6 @@ class _TelaLoginState extends State<TelaLogin> {
                 });
                 Salvar();
 
-
                 final response = await http.get("$_baseUrl/user.json");
                 //var teste =  User.fromJson(json.decode(response.body)['user']);
                 Map teste = json.decode(response.body);
@@ -149,7 +151,7 @@ class _TelaLoginState extends State<TelaLogin> {
                 // print(teste.values.elementAt(0)['email'] + " email logado : " + teste.values.elementAt(0)['email']);
                 // Percorre lista de usuarios cadastrados
 
-
+                // ignore: unnecessary_statements
                 for (i; i < teste.length; i++) {
                   print(teste.values.elementAt(i)['email'] +
                       " email digitado : " +
@@ -191,7 +193,6 @@ class _TelaLoginState extends State<TelaLogin> {
                             builder: (context) => DadosUsuario(user: user)));
                   }
                 }
-                ;
                 if (i == teste.length)
                   Navigator.of(context).pushNamed(
                     AppRoutes.HOME,
@@ -200,25 +201,37 @@ class _TelaLoginState extends State<TelaLogin> {
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 20,
           ),
           Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.all(
-                Radius.circular(8),
+            child: Text(
+              "Não tem uma conta?",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 18,
               ),
+              textAlign: TextAlign.center,
             ),
-            height: 40,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 60,
             child: FlatButton(
               child: Text(
                 "Cadastre-se",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.red,
                   fontSize: 20,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                side: BorderSide(color: Colors.redAccent),
               ),
               onPressed: () => {
                 Navigator.of(context).pushNamed(
