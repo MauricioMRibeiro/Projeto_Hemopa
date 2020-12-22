@@ -105,7 +105,55 @@ class AtualizarCadastro extends StatelessWidget {
                   contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
-                  labelText: "Cpf: " + users.all.elementAt(1).cpf,
+                  labelText: "Senha: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Data Nasc.: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Cpf: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "RG: ",
                   counterStyle: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -133,12 +181,11 @@ class AtualizarCadastro extends StatelessWidget {
                 height: 5,
               ),
               TextFormField(
-                maxLines: 1, // ISSO FAZ COM QUE SEU TEXTO NÃO PULE PARA LINHA
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
-                  labelText: "Telefone: " + users.all.elementAt(1).telefone,
+                  labelText: "CEP: ",
                   counterStyle: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -156,6 +203,103 @@ class AtualizarCadastro extends StatelessWidget {
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
                   labelText: "Endereço: " + users.all.elementAt(1).endereco,
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Nº: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Bairro: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Cidade: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "UF: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Celular: ",
+                  counterStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              TextFormField(
+                maxLines: 1, // ISSO FAZ COM QUE SEU TEXTO NÃO PULE PARA LINHA
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: "Telefone: " + users.all.elementAt(1).telefone,
                   counterStyle: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -199,7 +343,10 @@ class AtualizarCadastro extends StatelessWidget {
                     },
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ));
