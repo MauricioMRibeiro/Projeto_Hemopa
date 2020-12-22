@@ -19,6 +19,18 @@ class _DropDownState extends State<AgendamentoDoacao> {
     'Agra Campos'
   ];
   var _unidadeSelecionada = 'Batista Campos';
+  var _tipoSanguineo = [
+    'Não sei',
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB+',
+    'AB-',
+    'O+',
+    'O-'
+  ];
+  var _tipoSangueSelecionado = 'Não sei';
   var _horarios = [
     '07:30',
     '08:00',
@@ -80,6 +92,41 @@ class _DropDownState extends State<AgendamentoDoacao> {
             height: 150,
             child: Image.asset('imagem/logo.png'),
           ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            "Tipo Sanguíneo:",
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          DropdownButton<String>(
+              //dropdownColor: Color.fromARGB(255, 255, 50, 0),
+              items: _tipoSanguineo.map((String dropDownStringItem) {
+                return DropdownMenuItem<String>(
+                  value: dropDownStringItem,
+                  child: Text(dropDownStringItem,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.bold,
+                      )),
+                );
+              }).toList(),
+              onChanged: (String novoItemSelecionado) {
+                _dropDownTipoSanguineo(novoItemSelecionado);
+                setState(() {
+                  this._tipoSangueSelecionado = novoItemSelecionado;
+                });
+              },
+              value: _tipoSangueSelecionado),
           SizedBox(
             height: 5,
           ),
@@ -197,7 +244,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             width: 200,
             child: FlatButton(
               child: Text(
-                "Agendar",
+                "Agendar Doação",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -205,9 +252,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              onPressed: () => {
-              Navigator.pop(context)
-              },
+              onPressed: () => {Navigator.pop(context)},
             ),
           ),
         ],
@@ -224,6 +269,12 @@ class _DropDownState extends State<AgendamentoDoacao> {
   void _dropDownHorarioSelected(String novoHorario) {
     setState(() {
       this._horarioSelecionado = novoHorario;
+    });
+  }
+
+  void _dropDownTipoSanguineo(String novoTipo) {
+    setState(() {
+      this._tipoSangueSelecionado = novoTipo;
     });
   }
 }

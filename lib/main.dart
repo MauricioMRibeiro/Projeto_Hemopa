@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/provider/users.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
+import 'package:hemopa_app/views/tela_home.dart';
 import 'package:hemopa_app/views/tela_login.dart';
 import 'package:provider/provider.dart';
 import 'package:hemopa_app/views/dados_usuario.dart';
@@ -50,6 +51,7 @@ class Hemopa extends StatelessWidget {
           AppRoutes.CADASTRO: (ctx) => Cadastro(),
           AppRoutes.ATUALIZAR_CADASTRO: (ctx) => AtualizarCadastro(),
           // AppRoutes.DATAS_DISPONIVEIS: (ctx ) => DatasDisponiveis(),
+          AppRoutes.TELA_HOME: (ctx) => TelaHome(),
         },
       ),
     );
