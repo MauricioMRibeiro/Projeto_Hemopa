@@ -8,4 +8,5 @@ class AppRoutes {
   static const ATUALIZAR_CADASTRO = '/atualiza-cadastro';
   static const CADASTRO = '/cadastro';
   static const TELA_HOME = '/tela-home';
+  static const MEUS_AGENDAMENTOS = '/meus-agendamentos';
 }

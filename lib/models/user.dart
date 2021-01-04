@@ -11,6 +11,7 @@ class User {
   final String endereco;
   final String senha;
   final String datanasc;
+  //final DateTime datanasc;
   final String rg;
   final String cep;
   final String cidade;
@@ -59,7 +60,6 @@ class User {
       cep: json['cep'],
       cidade: json['cidade'],
       uf: json['uf'],
-
     );
   }
 }

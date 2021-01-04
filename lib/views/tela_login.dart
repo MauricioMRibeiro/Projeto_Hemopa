@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:hemopa_app/models/user.dart';
 import 'package:hemopa_app/views/dados_usuario.dart';
+// ignore: unused_import
+import 'package:hemopa_app/views/tela_home.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:provider/provider.dart';
 
 class TelaLogin extends StatefulWidget {
@@ -85,7 +88,7 @@ class _TelaLoginState extends State<TelaLogin> {
             controller: textusuario,
             obscureText: false,
             decoration: InputDecoration(
-                labelText: 'E-mail ou CPF',
+                labelText: 'E-mail',
                 labelStyle: TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
@@ -120,7 +123,7 @@ class _TelaLoginState extends State<TelaLogin> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Colors.red[800],
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
               ),
@@ -173,24 +176,25 @@ class _TelaLoginState extends State<TelaLogin> {
                     print("nome:" + user.nome);
                     print("email:" + user.email);
                     //print("avatarUrl:" + user.avatarUrl);
-                    print("endereco:" + user.endereco);
+                    //print("endereco:" + user.endereco);
                     print("telefone:" + user.telefone);
                     print("senha:" + user.senha);
                     //inseri novos dados:
                     print("datanasc:" + user.datanasc);
-                    print("rg:" + user.rg);
-                    print("cep:" + user.cep);
-                    print("cidade:" + user.cidade);
+                    print("celular:" + user.celular);
+                    //print("rg:" + user.rg);
+                    // print("cep:" + user.cep);
+                    /* print("cidade:" + user.cidade);
                     print("uf:" + user.uf);
                     print("numero:" + user.numero);
-                    print("bairro:" + user.bairro);
-                    //print("sexo:" + user.sexo);
-                    print("celular:" + user.celular);
+                    print("bairro:" + user.bairro); */
+                    print("sexo:" + user.sexo);
 
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => DadosUsuario(user: user)));
+                    //builder: (context) => TelaHome(user: user)));
                   }
                 }
                 if (i == teste.length)
@@ -224,18 +228,19 @@ class _TelaLoginState extends State<TelaLogin> {
                 "Cadastre-se",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.red,
+                  color: Colors.red[800],
                   fontSize: 20,
                 ),
                 textAlign: TextAlign.center,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(color: Colors.redAccent),
+                side: BorderSide(color: Colors.red[800], width: 3),
               ),
               onPressed: () => {
                 Navigator.of(context).pushNamed(
                   AppRoutes.CADASTRO,
+                  //AppRoutes.MEUS_AGENDAMENTOS,
                 ),
               },
             ),

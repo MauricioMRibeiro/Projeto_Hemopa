@@ -50,7 +50,7 @@ class AtualizarCadastro extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.red[800],
         ),
         body: Container(
           padding: EdgeInsets.only(
