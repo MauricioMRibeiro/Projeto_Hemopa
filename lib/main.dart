@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hemopa_app/provider/users.dart';
 import 'package:hemopa_app/routes/app_routes.dart';
+import 'package:hemopa_app/views/meus_agendamentos.dart';
 import 'package:hemopa_app/views/tela_home.dart';
 import 'package:hemopa_app/views/tela_login.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class Hemopa extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.red,
+          primaryColor: Colors.red[800],
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         //home: TelaLogin(),
@@ -52,6 +54,7 @@ class Hemopa extends StatelessWidget {
           AppRoutes.ATUALIZAR_CADASTRO: (ctx) => AtualizarCadastro(),
           // AppRoutes.DATAS_DISPONIVEIS: (ctx ) => DatasDisponiveis(),
           AppRoutes.TELA_HOME: (ctx) => TelaHome(),
+          AppRoutes.MEUS_AGENDAMENTOS: (ctx) => MeusAgendamentos(),
         },
       ),
     );

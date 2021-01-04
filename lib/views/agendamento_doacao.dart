@@ -67,7 +67,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Agendamento",
+          "Agendar Doação",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red[800],
       ),
       body: criaDropDownButton(),
     );
@@ -235,7 +235,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Colors.red[800],
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
               ),
@@ -244,7 +244,7 @@ class _DropDownState extends State<AgendamentoDoacao> {
             width: 200,
             child: FlatButton(
               child: Text(
-                "Agendar Doação",
+                "Agendar",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
